@@ -1,13 +1,6 @@
 import User from 'App/Models/User'
 
-interface Payload {
-  username: string
-  name: string
-  email: string
-  password: string
-}
-
-const Store = async ({ username, name, email, password }: Payload) => {
+const Store = async ({ username, name, email, password }: User) => {
   const userExists = await User.findBy('username', username)
 
   if (!userExists) {

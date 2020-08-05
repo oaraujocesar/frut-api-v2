@@ -4,12 +4,12 @@ import Login from 'App/Mediators/Client/Auth/Login'
 
 export default class AuthController {
   public async store ({ request, response }: HttpContextContract) {
-    return Store(request.only(['username', 'name', 'email', 'password']))
-      .then(({ status, data }) => response.status(status).send(data))
+    const { status, data } = await Store(request.only(['username', 'name', 'email', 'password']))
+    return response.status(status).send(data)
   }
 
   public async login ({ request, response, auth }: HttpContextContract) {
-    return Login(request.only(['username', 'password']), auth)
-      .then(({ status, data }) => response.status(status).send(data))
+    const { status, data } = await Login(request.only(['username', 'password']), auth)
+    return response.status(status).send(data)
   }
 }
