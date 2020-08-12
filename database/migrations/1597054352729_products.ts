@@ -1,7 +1,7 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class Ratings extends BaseSchema {
-  protected tableName = 'ratings'
+export default class Products extends BaseSchema {
+  protected tableName = 'products'
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
@@ -9,7 +9,22 @@ export default class Ratings extends BaseSchema {
         .uuid('id')
         .primary()
       table
-        .integer('rating')
+        .string('name', 80)
+        .notNullable()
+      table
+        .string('type', 20)
+        .notNullable()
+      table
+        .string('thumbnail', 254)
+        .notNullable()
+      table
+        .boolean('is_sell')
+        .notNullable()
+      table
+        .integer('units')
+        .notNullable()
+      table
+        .float('price')
         .notNullable()
       table
         .uuid('user_id')

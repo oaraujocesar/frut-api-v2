@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { DateTime } from 'luxon'
 import { BaseModel, column, beforeSave, beforeCreate, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 import Rating from './Rating'
+import Product from './Product'
 
 export default class User extends BaseModel {
   @column()
@@ -34,6 +35,9 @@ export default class User extends BaseModel {
 
   @hasMany(() => Rating)
   public ratings: HasMany<typeof Rating>
+
+  @hasMany(() => Product)
+  public products: HasMany<typeof Product>
 
   @beforeSave()
   public static async hashPassword (user: User) {
